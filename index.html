@@ -24,7 +24,7 @@
 
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="ocean.html">Ocean Escape</a></li>
+            <li><a href="ocean.html">Lost at Sea</a></li>
             <li><a href="outdoors.html">Return to the Mountians</a></li>
             <li><a href="city.html">Sex in the City</a></li>
           </ul>
@@ -44,29 +44,35 @@
         </div>
         <div class="container">
           <form class="blank">
-            <div class="form-group">
-              <label for="name generalHeadline">Lets start with your name, date of birth, gender id, and your social security number</label>
-              <input type="text" class="form-control" id="name">
+            <label>Lets start with your name, date of birth, gender id, and your social security number</label>
+            <!-- change from here -->
+            <div class="form-inline">
+
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name">
+              </div>
+              <div class="form-group">
+                <label for="born">date of birth</label>
+                <input type="date" class="from-control" id="born">
+              </div>
+              <div class="form-group">
+                <label for="ssn">ssn</label>
+                <input type="text" class="form-control" id="ssn" placeholder="xxx-xx-xxxx">
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="pref" value="male">
+                  male
+                </label>
+                <label>
+                  <input type="radio" name="pref" value="female">
+                  female
+                </label>
+              </div>
+
             </div>
-            <div class="form-group">
-              <label for="born">date of birth</label>
-              <input type="date" class="from-control" id="born">
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref" value="male">
-                male
-              </label>
-              <label>
-                <input type="radio" name="pref" value="female">
-                female
-              </label>
-            </div>
-            <div class="form-group">
-              <label for="ssn">ssn</label>
-              <input type="text" class="form-control" id="ssn">
-            </div>
-  <!-- social security number (put in place the - and x or 0 for numbers they haven't subbmited yet) -->
+            <!-- to here -->
 
             <p class="generalHeadline">Now that we got the info that we really wanted lets go through the motions so we can pretend to pic a destination specificaly for you! if you could drag down the select boxs and pic somehting that you think resembles you.</p>
             <select class="form-control" name="var1" id="realPref">
