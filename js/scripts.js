@@ -31,7 +31,6 @@ var fourAndSix = function() {
   q46 = q4 + q6;
 }
 
-alert("hi");
 
 
 // function that finds out what has the higher score sun city outdoors
@@ -43,12 +42,15 @@ var compare1 = function()  {
   } else if ( q15 > q23 && q15 > q46 ) {
     // then q15 is the highest
     alert("You're going to the Sun");
+    window.location.replace("ocean.html");
   } else if ( q23 > q15 && q23 > q46 ) {
     // then q23 is the highest
-    alert("You're going to the Ocean");
+    alert("You're going to the Outdoors");
+    window.location.replace("outdoors.html");
   } else if ( q46 > q15 && q46 > q23 ) {
     // the q46 is the highest
     alert("You're going to the city" );
+    window.location.replace("city.html");
   } else if ( q15 === q23 && q15 > q46 )  {
     // we need to choose between q15 and q23
     alert('you need to choose between the sun and outdoors');
@@ -63,8 +65,9 @@ var compare1 = function()  {
     alert("something is wrong with your application try and subbmitting it agian if it doesn't work don't worry we allready have your ssn so we don't need anything else")
   }
 }
-
-
+confirm("our algoryth has it as a tie between the sun and the outdoors click ok if you'd like the sun or cancel if you'd like the outdoors");
+confirm("our algoryth has it as a tie between the sun and the ocean click ok if you'd like the sun or cancel if you'd like the ocean");
+confirm("our algoryth has it as a tie between the ocean and the outdoors click ok if you'd like the ocean or cancel if you'd like the outdoors");
 
 // front end logic (interacts with the website)
 $(function()  {
@@ -84,7 +87,6 @@ $(function()  {
     twoAndThree();
     fourAndSix();
     alert("hi");
-    alert(q15);
     compare1();
 
   });
