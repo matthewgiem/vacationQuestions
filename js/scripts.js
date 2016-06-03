@@ -17,6 +17,7 @@ var q23;
 // q46 is city
 var q46;
 
+
 //back end logic (decision maker)
 // add up questions 1 & 5 to see how much you like the ocean
 var oneAndFive = function() {
@@ -41,20 +42,35 @@ var compare1 = function()  {
   oneAndFive();
   twoAndThree();
   fourAndSix();
-  $(".person").text(name);
+
   if ( q15 == q46 == q23 ) {
     // they are tied at the top
-    alert('they are tied');
+    alert('they are tied try again');
   } else if ( q15 > q23 && q15 > q46 ) {
     // then q15 is the highest
+    if (realPref === q15 ) {
+      // model saying congrats
+    } else {
+      //model saying sorry you didn't get your choice
+    }
     alert("You're going to the ocean");
     window.location.replace("ocean.html");
   } else if ( q23 > q15 && q23 > q46 ) {
     // then q23 is the highest
+    if (realPref === q23) {
+      //model saying congrats
+    } else {
+      //model saying sorry you didn't get your choice
+    }
     alert("You're going to the Outdoors");
     window.location.replace("outdoors.html");
   } else if ( q46 > q15 && q46 > q23 ) {
     // the q46 is the highest
+    if (realPref === q46) {
+      //model saying congrats
+    } else {
+      //model saying sorry you didn't get your choice
+    }
     alert("You're going to the city" );
     window.location.replace("city.html");
   } else if ( q15 === q23 && q15 > q46 )  {
@@ -89,11 +105,12 @@ var compare1 = function()  {
     alert("something is wrong with your application try and subbmitting it agian if it doesn't work don't worry we allready have your ssn so we don't need anything else")
   }
 }
-
 //idea create a program that checks the place you wanted to go vs were the algoryth sent you and send you a model in the compar1 function before it sends you to the page either says sorry I sent you to the place you wanted to go or horray you got your choice
 
 
+var model1 = function() {
 
+}
 
 
 
@@ -109,18 +126,20 @@ $(function()  {
     dob = $("#born").val();
     sex = $("#pref").val();
     ssn = parseInt($("#ssn").val());
-    realPref = $("input:radio[name=pref]:checked").val();
+    realPref = $("#realPref").val();
+
     q1 = parseInt($("input:radio[name=q1]:checked").val());
     q2 = parseInt($("input:radio[name=q2]:checked").val());
     q3 = parseInt($("input:radio[name=q3]:checked").val());
     q4 = parseInt($("input:radio[name=q4]:checked").val());
     q5 = parseInt($("input:radio[name=q5]:checked").val());
     q6 = parseInt($("input:radio[name=q6]:checked").val());
+    $(".person").text(name);
     event.preventDefault();
     // check to see if the variables are all correct
     // alert(name);
     // alert(dob);
-    // alert(realPref);
+    alert(realPref);
     // alert(ssn);
     // alert("you did it");
     // alert(q6);
