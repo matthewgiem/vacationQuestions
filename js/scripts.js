@@ -28,7 +28,7 @@ var fourAndSix = function() {
   q46 = q4 + q6;
 }
 
-
+alert("hi");
 
 
 
@@ -52,6 +52,9 @@ $(function()  {
     oneAndFive();
     twoAndThree();
     fourAndSix();
+    alert("hi");
+    alert(q15);
+
   });
 
 });
