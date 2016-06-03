@@ -10,7 +10,7 @@ var q3;
 var q4;
 var q5;
 var q6;
-// q15 is sun
+// q15 is ocean
 var q15;
 // q23 is outdoors
 var q23;
@@ -18,7 +18,7 @@ var q23;
 var q46;
 
 //back end logic (decision maker)
-// add up questions 1 & 5 to see how much you like the sun
+// add up questions 1 & 5 to see how much you like the ocean
 var oneAndFive = function() {
   q15 = q1 + q5;
 }
@@ -33,15 +33,19 @@ var fourAndSix = function() {
 
 
 
-// function that finds out what has the higher score sun city outdoors
+// function that finds out what has the higher score ocean city outdoors
 
 var compare1 = function()  {
+  oneAndFive();
+  twoAndThree();
+  fourAndSix();
+  $(".person").text(name);
   if ( q15 == q46 == q23 ) {
     // they are tied at the top
     alert('they are tied');
   } else if ( q15 > q23 && q15 > q46 ) {
     // then q15 is the highest
-    alert("You're going to the Sun");
+    alert("You're going to the ocean");
     window.location.replace("ocean.html");
   } else if ( q23 > q15 && q23 > q46 ) {
     // then q23 is the highest
@@ -53,21 +57,44 @@ var compare1 = function()  {
     window.location.replace("city.html");
   } else if ( q15 === q23 && q15 > q46 )  {
     // we need to choose between q15 and q23
-    alert('you need to choose between the sun and outdoors');
+    if (confirm("our algoryth has it as a tie between the ocean and the city click ok if you'd like the ocean or cancel if you'd like the ocean")) {
+      alert("You're going to the outdoors");
+      window.location.replace("outdoors.html");
+    } else {
+      alert("You're going to the ocean" );
+      window.location.replace("ocean.html");
+    }
   } else if ( q15 === q46 && q15 > q23 )  {
     // we need to choose between q15 and q46
-    alert('you need to choose between the sun and the city');
+    if (confirm("our algoryth has it as a tie between the ocean and the city click ok if you'd like the ocean or cancel if you'd like the city")) {
+      alert("You're going to the ocean");
+      window.location.replace("ocean.html");
+    } else {
+      alert("You're going to the city" );
+      window.location.replace("city.html");
+    }
   } else if ( q46 === q23 && q46 > q15 )  {
     // we need to choose between q46 and q23
-    alert('you need to choose between the outdoors and the city')
+    if (confirm("our algoryth has it as a tie between the outdoors and the city click ok if you'd like the outdoors or cancel if you'd like the city")) {
+      alert("You're going to the outdoors");
+      window.location.replace("outdoors.html");
+    } else {
+      alert("You're going to the city" );
+      window.location.replace("city.html");
+    }
   } else {
     // we need to run the operation again cause we are getting an error
     alert("something is wrong with your application try and subbmitting it agian if it doesn't work don't worry we allready have your ssn so we don't need anything else")
   }
 }
-confirm("our algoryth has it as a tie between the sun and the outdoors click ok if you'd like the sun or cancel if you'd like the outdoors");
-confirm("our algoryth has it as a tie between the sun and the ocean click ok if you'd like the sun or cancel if you'd like the ocean");
-confirm("our algoryth has it as a tie between the ocean and the outdoors click ok if you'd like the ocean or cancel if you'd like the outdoors");
+// confirm("our algoryth has it as a tie between the ocean and the outdoors click ok if you'd like the ocean or cancel if you'd like the outdoors");
+// confirm("our algoryth has it as a tie between the ocean and the city click ok if you'd like the ocean or cancel if you'd like the ocean");
+// confirm("our algoryth has it as a tie between the city and the outdoors click ok if you'd like the ocean or cancel if you'd like the outdoors");
+
+
+
+
+
 
 // front end logic (interacts with the website)
 $(function()  {
@@ -83,10 +110,8 @@ $(function()  {
     q5 = parseInt($("input:radio[name=q5]:checked").val());
     q6 = parseInt($("input:radio[name=q6]:checked").val());
     event.preventDefault();
-    oneAndFive();
-    twoAndThree();
-    fourAndSix();
-    alert("hi");
+
+    // function to run the backend logic
     compare1();
 
   });
