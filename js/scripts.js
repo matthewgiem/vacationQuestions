@@ -4,148 +4,102 @@ var dob;
 var sex;
 var ssn;
 var realPref;
-var q1;
-var q2;
-var q3;
-var q4;
-var q5;
-var q6;
-// q15 is ocean
-var q15;
-// q23 is outdoors
-var q23;
-// q46 is city
-var q46;
-
-
+var oceanQuestion1;
+var outdoorQuestion1;
+var outdoorQuestion2;
+var cityQuestion1;
+var oceanQuestion2;
+var cityQuestion2;
+var combindedBeachQuestions;
+var combindedOutdoorQuestions;
+var combindedCityQuestions;
 //back end logic (decision maker)
-// add up questions 1 & 5 to see how much you like the ocean
-var oneAndFive = function() {
-  q15 = q1 + q5;
+var compareBeachQuestions = function() {
+  combindedBeachQuestions = oceanQuestion1 + oceanQuestion2;
 }
-
-// add up questions 2 & 3 to see how much you like the outdoors
-var twoAndThree = function() {
-  q23 = q2 + q3;
+var compareOutdoorQuestions = function() {
+  combindedOutdoorQuestions = outdoorQuestion1 + outdoorQuestion2;
 }
-
-// add up question 4 & 6 to see how much you like the city
-var fourAndSix = function() {
-  q46 = q4 + q6;
+var compareCityQuestions = function() {
+  combindedCityQuestions = cityQuestion1 + cityQuestion2;
 }
-
-
-
-// function that finds out what has the higher score ocean city outdoors
-
-var compare1 = function()  {
-  oneAndFive();
-  twoAndThree();
-  fourAndSix();
-
-  if ( q15 == q46 == q23 ) {
-    // they are tied at the top
+var compareAnswers = function()  {
+  compareBeachQuestions();
+  compareOutdoorQuestions();
+  compareCityQuestions();
+  if ( combindedBeachQuestions == combindedCityQuestions == combindedOutdoorQuestions ) {
     alert('they are tied try again');
-  } else if ( q15 > q23 && q15 > q46 ) {
-    // then q15 is the highest
-    if (realPref === q15 ) {
-      // model saying congrats
-    } else {
-      //model saying sorry you didn't get your choice
-    }
+  } else if ( combindedBeachQuestions > combindedOutdoorQuestions && combindedBeachQuestions > combindedCityQuestions ) {
     alert("You're going to the ocean");
-    window.location.replace("ocean.html");
-  } else if ( q23 > q15 && q23 > q46 ) {
-    // then q23 is the highest
-    if (realPref === q23) {
-      //model saying congrats
-    } else {
-      //model saying sorry you didn't get your choice
-    }
+    $("#ocean").show();
+    $("#mainPage").hide();
+  } else if ( combindedOutdoorQuestions > combindedBeachQuestions && combindedOutdoorQuestions > combindedCityQuestions ) {
     alert("You're going to the Outdoors");
-    window.location.replace("outdoors.html");
-  } else if ( q46 > q15 && q46 > q23 ) {
-    // the q46 is the highest
-    if (realPref === q46) {
-      //model saying congrats
-    } else {
-      //model saying sorry you didn't get your choice
-    }
+    $("#outdoors").show();
+    $("#mainPage").hide();
+  } else if ( combindedCityQuestions > combindedBeachQuestions && combindedCityQuestions > combindedOutdoorQuestions ) {
     alert("You're going to the city" );
-    window.location.replace("city.html");
-  } else if ( q15 === q23 && q15 > q46 )  {
-    // we need to choose between q15 and q23
+    $("#city").show();
+    $("#mainPage").hide();
+  } else if ( combindedBeachQuestions === combindedOutdoorQuestions && combindedBeachQuestions > combindedCityQuestions )  {
     if (confirm("our algoryth has it as a tie between the ocean and the outdoors click ok if you'd like the outdoors or cancel if you'd like the ocean")) {
       alert("You're going to the outdoors");
-      window.location.replace("outdoors.html");
+      $("#outdoors").show();
+      $("#mainPage").hide();
     } else {
       alert("You're going to the ocean" );
-      window.location.replace("ocean.html");
+      $("#ocean").show();
+      $("#mainPage").hide();
     }
-  } else if ( q15 === q46 && q15 > q23 )  {
-    // we need to choose between q15 and q46
+  } else if ( combindedBeachQuestions === combindedCityQuestions && combindedBeachQuestions > combindedOutdoorQuestions )  {
     if (confirm("our algoryth has it as a tie between the ocean and the city click ok if you'd like the ocean or cancel if you'd like the city")) {
       alert("You're going to the ocean");
-      window.location.replace("ocean.html");
+      $("#ocean").show();
+      $("#mainPage").hide();
     } else {
       alert("You're going to the city" );
-      window.location.replace("city.html");
+      $("#city").show();
+      $("#mainPage").hide();
     }
-  } else if ( q46 === q23 && q46 > q15 )  {
-    // we need to choose between q46 and q23
+  } else if ( combindedCityQuestions === combindedOutdoorQuestions && combindedCityQuestions > combindedBeachQuestions )  {
     if (confirm("our algoryth has it as a tie between the outdoors and the city click ok if you'd like the outdoors or cancel if you'd like the city")) {
       alert("You're going to the outdoors");
-      window.location.replace("outdoors.html");
+      $("#outdoors").show();
+      $("#mainPage").hide();
     } else {
       alert("You're going to the city" );
-      window.location.replace("city.html");
+      $("#city").show();
+      $("#mainPage").hide();
     }
   } else {
-    // we need to run the operation again cause we are getting an error
     alert("something is wrong with your application try and subbmitting it agian if it doesn't work don't worry we allready have your ssn so we don't need anything else")
   }
 }
-//idea create a program that checks the place you wanted to go vs were the algoryth sent you and send you a model in the compar1 function before it sends you to the page either says sorry I sent you to the place you wanted to go or horray you got your choice
-
-
-var model1 = function() {
-
-}
-
-
-
-
-
-
-
-
 // front end logic (interacts with the website)
 $(function()  {
+  $("#ocean").hide();
+  $("#city").hide();
+  $("#outdoors").hide();
+  $("#cityLink").click(function(event){
+    $("#city").show();
+    debugger;
+    $("#mainPage").hide();
+    event.preventDefault();
+  });
   $("form.blank").submit(function(event) {
     name = $("#name").val();
     dob = $("#born").val();
     sex = $("#pref").val();
     ssn = parseInt($("#ssn").val());
     realPref = $("#realPref").val();
-
-    q1 = parseInt($("input:radio[name=q1]:checked").val());
-    q2 = parseInt($("input:radio[name=q2]:checked").val());
-    q3 = parseInt($("input:radio[name=q3]:checked").val());
-    q4 = parseInt($("input:radio[name=q4]:checked").val());
-    q5 = parseInt($("input:radio[name=q5]:checked").val());
-    q6 = parseInt($("input:radio[name=q6]:checked").val());
+    oceanQuestion1 = parseInt($("input:radio[name=oceanQuestion1]:checked").val());
+    outdoorQuestion1 = parseInt($("input:radio[name=outdoorQuestion1]:checked").val());
+    outdoorQuestion2 = parseInt($("input:radio[name=outdoorQuestion2]:checked").val());
+    cityQuestion1 = parseInt($("input:radio[name=cityQuestion1]:checked").val());
+    oceanQuestion2 = parseInt($("input:radio[name=oceanQuestion2]:checked").val());
+    cityQuestion2 = parseInt($("input:radio[name=cityQuestion2]:checked").val());
     $(".person").text(name);
     event.preventDefault();
-    // check to see if the variables are all correct
-    // alert(name);
-    // alert(dob);
-    alert(realPref);
-    // alert(ssn);
-    // alert("you did it");
-    // alert(q6);
-    // function to run the backend logic
-    compare1();
-
+    compareAnswers();
   });
-
 });
